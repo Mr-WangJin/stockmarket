@@ -21,10 +21,10 @@ public class HelloController {
 	@Autowired
 	private Twitter twitter;
 
-	@RequestMapping("/")
-	public String hello(@RequestParam(defaultValue = "JKStockMarket") String search, Model model) {
-		SearchResults searchResults = twitter.searchOperations().search(search);
-		String text = searchResults.getTweets().get(0).getText();
+	@RequestMapping("/hello")
+	public String hello(@RequestParam(defaultValue = "world") String text, Model model) {
+//		SearchResults searchResults = twitter.searchOperations().search(search);
+//		String text = searchResults.getTweets().get(0).getText();
 		model.addAttribute("message", text);
 		return "resultPage";
 	}
