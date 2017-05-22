@@ -1,32 +1,30 @@
 package com.jk.stockmarket.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.twitter.api.SearchResults;
+import org.springframework.social.twitter.api.Tweet;
 import org.springframework.social.twitter.api.Twitter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HelloController {
+public class TestJQuery {
 
-//	@RequestMapping("/")
-//	public String hello(@RequestParam(defaultValue = "world") String name, Model model) {
-//		model.addAttribute("message", "Hello " + name);
-//		return "resultPage";
-//	}
 
 	@Autowired
 	private Twitter twitter;
 
-	@RequestMapping("/")
-	public String hello(@RequestParam(defaultValue = "JKStockMarket") String search, Model model) {
+	@RequestMapping("/TestJQuery")
+	public String hello(@RequestParam(defaultValue = "masterSpringMVC4") String search, Model model) {
 		SearchResults searchResults = twitter.searchOperations().search(search);
-		String text = searchResults.getTweets().get(0).getText();
-		model.addAttribute("message", text);
-		return "resultPage";
+		List<Tweet> tweets = searchResults.getTweets();
+		model.addAttribute("tweets", tweets);
+		model.addAttribute("search", search);
+		return "testJQuery";
 	}
 
 }
